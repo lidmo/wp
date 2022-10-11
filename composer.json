@@ -1,0 +1,24 @@
+{
+  "name": "lidmo/wp",
+  "description": "Framework POO para desenvolvimento de plugins WP",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wesley Silva",
+      "email": "wesley_developer@outlook.com"
+    }
+  ],
+  "require": {
+    "illuminate/database": "^8.83",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "illuminate/events": "^8.83",
+    "laravel/helpers": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "\\Lidmo\\WP\\": "src"
+    }
+  }
+}
