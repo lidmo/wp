@@ -34,7 +34,7 @@ class Manager extends BaseManager
                 'charset'   => $wpdb->charset,
                 'collation' => $wpdb->collate,
                 'prefix'    => $wpdb->base_prefix,
-            ], 'wp');
+            ]);
         }
     }
 
