@@ -3,6 +3,8 @@
 namespace Lidmo\WP\Database\Capsule;
 
 use Illuminate\Database\Capsule\Manager as BaseManager;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Support\Facades\Facade;
 use Lidmo\WP\Database\Connection;
 
 /**
@@ -42,9 +44,17 @@ class Manager extends BaseManager
         if(!static::$instance){
             static::$instance=new static();
             static::$instance->setupWp($useWpConnection);
-            static::$instance->setAsGlobal();
-            static::$instance->bootEloquent();
+            static::$instance->setupEloquent();
         }
         return static::$instance;
+    }
+
+    protected function setupEloquent(){
+        $app = $this->getContainer();
+        $app->instance('db', $this->getDatabaseManager());
+        Facade::setFacadeApplication($app);
+        $this->setAsGlobal();
+        $this->setEventDispatcher(new Dispatcher($app));
+        $this->bootEloquent();
     }
 }
