@@ -7,7 +7,6 @@ namespace Lidmo\WP\Database;
 
 use PDO as BasePDO;
 use PDOException;
-use ReturnTypeWillChange;
 
 class PDO extends BasePDO
 {
@@ -59,12 +58,12 @@ class PDO extends BasePDO
         return $this->in_transaction;
     }
 
-    #[ReturnTypeWillChange] public function exec($statement): bool
+    public function exec($statement): bool
     {
         return $this->db->unprepared($statement);
     }
 
-    #[ReturnTypeWillChange] public function lastInsertId($name = null): int
+    public function lastInsertId($name = null): int
     {
         return (int) $this->db->getWP()->insert_id;
     }
